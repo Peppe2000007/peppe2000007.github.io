@@ -10,8 +10,6 @@
             margin: 0;
             font-family: 'Arial', sans-serif;
             overflow: hidden;
-            background: #f8f8f8;
-            color: #333;
         }
 
         /* Finto sito di scarpe */
@@ -21,7 +19,7 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
-            background: linear-gradient(135deg, #ff7eb3, #ff758c);
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
             color: white;
             text-align: center;
             transition: opacity 1s ease, transform 1s ease;
@@ -29,19 +27,22 @@
         }
 
         .shoes-store h1 {
-            font-size: 3.5rem;
+            font-size: 4rem;
+            animation: fadeIn 2s ease;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
         }
 
         .shoes-store p {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             margin: 20px 0;
+            animation: fadeIn 2.5s ease;
         }
 
         .shoes-store img {
-            max-width: 300px;
+            max-width: 350px;
             border: 5px solid white;
             border-radius: 15px;
-            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.4);
             animation: bounce 2s infinite;
         }
 
@@ -79,6 +80,13 @@
         .hacked-message p {
             font-size: 1.5rem;
             margin-top: 10px;
+        }
+
+        .hacked-message .details {
+            font-size: 1.2rem;
+            color: crimson;
+            margin-top: 20px;
+            font-weight: bold;
         }
 
         /* Animazioni */
@@ -121,8 +129,8 @@
     <!-- Finto sito iniziale -->
     <div class="shoes-store" id="shoesStore">
         <h1>Benvenuto su Scarpe Store</h1>
-        <p>Trova le migliori scarpe al miglior prezzo!</p>
-        <img src="https://via.placeholder.com/300x200?text=Scarpe" alt="Immagine di Scarpe">
+        <p>Trova le tue scarpe preferite con sconti esclusivi!</p>
+        <img src="https://via.placeholder.com/350x200?text=Scarpe+2025" alt="Immagine di Scarpe">
     </div>
 
     <!-- Canvas per l'effetto Matrix -->
@@ -133,6 +141,10 @@
         <h1 class="warning">⚠️ ATTENZIONE ⚠️</h1>
         <p>Il tuo dispositivo è stato compromesso dalla <br><strong>BatCorporation</strong></p>
         <p>Stiamo raccogliendo i tuoi dati personali... 🕵️‍♂️</p>
+        <div class="details">
+            <p>Memoria copiata: 64 GB</p>
+            <p>Dati caricati online...</p>
+        </div>
     </div>
 
     <script>
