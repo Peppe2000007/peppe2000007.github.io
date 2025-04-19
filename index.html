@@ -10,6 +10,7 @@
             margin: 0;
             font-family: 'Arial', sans-serif;
             overflow: hidden;
+            background: #f4f4f4;
         }
 
         /* Stile per la sezione delle scarpe */
@@ -53,18 +54,21 @@
             background: black;
             color: lime;
             font-family: 'Courier New', monospace;
-            animation: glitch 0.5s infinite;
+            overflow: hidden;
         }
 
         .hacked-message h1 {
             font-size: 2.5rem;
             margin-bottom: 20px;
             animation: blink 1s infinite;
+            text-shadow: 2px 2px red, -2px -2px blue;
         }
 
         .hacked-message p {
             font-size: 1.2rem;
             margin-top: 20px;
+            padding: 10px;
+            word-wrap: break-word; /* Evita che il testo esca lateralmente */
         }
 
         /* Animazioni */
@@ -97,15 +101,23 @@
             }
         }
 
-        @keyframes glitch {
-            0% {
-                text-shadow: 2px 2px red, -2px -2px blue;
+        /* Miglioramenti per dispositivi mobili */
+        @media (max-width: 768px) {
+            .shoes-store h1 {
+                font-size: 2.5rem;
             }
-            50% {
-                text-shadow: -2px -2px red, 2px 2px blue;
+
+            .shoes-store img {
+                max-width: 200px;
             }
-            100% {
-                text-shadow: 2px -2px blue, -2px 2px red;
+
+            .hacked-message h1 {
+                font-size: 1.8rem;
+            }
+
+            .hacked-message p {
+                font-size: 1rem;
+                word-break: break-word; /* Suddivide parole lunghe */
             }
         }
     </style>
