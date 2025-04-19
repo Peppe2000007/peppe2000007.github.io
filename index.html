@@ -5,14 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scarpe Store</title>
     <style>
-        /* Stili generali */
         body {
             margin: 0;
             font-family: 'Arial', sans-serif;
             overflow: hidden;
         }
 
-        /* Finto sito di scarpe */
         .shoes-store {
             display: flex;
             flex-direction: column;
@@ -46,7 +44,6 @@
             animation: bounce 2s infinite;
         }
 
-        /* Canvas per i codici Matrix */
         canvas {
             display: none;
             position: fixed;
@@ -57,7 +54,6 @@
             z-index: -1;
         }
 
-        /* Messaggio di hackeraggio */
         .hacked-message {
             display: none;
             flex-direction: column;
@@ -82,40 +78,32 @@
             margin-top: 10px;
         }
 
-        .hacked-message .details {
+        .details {
             font-size: 1.2rem;
-            color: crimson;
+            color: lime;
             margin-top: 20px;
             font-weight: bold;
+            background-color: rgba(0, 0, 0, 0.4);
+            padding: 15px;
+            border: 1px solid lime;
+            border-radius: 10px;
+            max-width: 600px;
+            animation: fadeIn 3s ease-in;
         }
 
-        /* Animazioni */
         @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
-        /* Effetto lampeggiante */
         @keyframes blink {
-            0%, 50% {
-                opacity: 1;
-            }
-            50%, 100% {
-                opacity: 0;
-            }
+            0%, 50% { opacity: 1; }
+            50%, 100% { opacity: 0; }
         }
 
         .warning {
@@ -126,48 +114,51 @@
     </style>
 </head>
 <body>
-    <!-- Finto sito iniziale -->
     <div class="shoes-store" id="shoesStore">
         <h1>Benvenuto su Scarpe Store</h1>
         <p>Trova le tue scarpe preferite con sconti esclusivi!</p>
         <img src="https://via.placeholder.com/350x200?text=Scarpe+2025" alt="Immagine di Scarpe">
     </div>
 
-    <!-- Canvas per l'effetto Matrix -->
     <canvas id="matrix"></canvas>
 
-    <!-- Messaggio di hackeraggio -->
     <div class="hacked-message" id="hackedMessage">
         <h1 class="warning">⚠️ ATTENZIONE ⚠️</h1>
         <p>Il tuo dispositivo è stato compromesso dalla <br><strong>BatCorporation</strong></p>
         <p>Stiamo raccogliendo i tuoi dati personali... 🕵️‍♂️</p>
-        <div class="details">
-            <p>Memoria copiata: 64 GB</p>
-            <p>Dati caricati online...</p>
-        </div>
+        <div class="details" id="detailsBox"></div>
     </div>
 
     <script>
-        // Funzione per simulare il cambio di contenuto
         setTimeout(() => {
-            // Nascondi il finto sito
             const shoesStore = document.getElementById('shoesStore');
             shoesStore.style.opacity = '0';
             shoesStore.style.transform = 'scale(0.9)';
             setTimeout(() => {
                 shoesStore.style.display = 'none';
 
-                // Mostra l'effetto Matrix e il messaggio di hackeraggio
                 const canvas = document.getElementById('matrix');
                 const hackedMessage = document.getElementById('hackedMessage');
                 canvas.style.display = 'block';
                 hackedMessage.style.display = 'flex';
 
                 startMatrixEffect();
-            }, 1000); // Attendi la transizione
-        }, 3000); // Mostra il "finto sito" per 3 secondi
 
-        // Effetto Matrix Code
+                const detailsBox = document.getElementById("detailsBox");
+                typeWriterMulti(detailsBox, [
+                    ">> Memoria copiata: 64.00 GB",
+                    ">> File sensibili individuati: 231",
+                    ">> Estrazione password in corso...",
+                    ">> Caricamento dati biometrici... COMPLETO",
+                    ">> Accesso webcam remota attivato",
+                    ">> Invio dati al server remoto: 198.51.100.13",
+                    ">> Sistema compromesso. Controllo completo acquisito.",
+                    ">> [!!!] Comunicazione stabilita con nodo BatCorporation"
+                ], 40, 1200);
+
+            }, 1000);
+        }, 3000);
+
         function startMatrixEffect() {
             const canvas = document.getElementById('matrix');
             const ctx = canvas.getContext('2d');
@@ -177,22 +168,20 @@
 
             const matrixChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@#$%^&*()_+[]{}<>?|';
             const fontSize = 16;
-            const columns = canvas.width / fontSize; // Numero di colonne
-            const drops = Array(Math.floor(columns)).fill(1); // Posizione iniziale di ogni colonna
+            const columns = canvas.width / fontSize;
+            const drops = Array(Math.floor(columns)).fill(1);
 
             function drawMatrix() {
-                ctx.fillStyle = 'rgba(0, 0, 0, 0.05)'; // Effetto dissolvenza
-                ctx.fillRect(0, 0, canvas.width, canvas.height); // Pulisce lo schermo
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-                ctx.fillStyle = '#0F0'; // Colore verde lime
-                ctx.font = fontSize + 'px monospace'; // Font per l'effetto Matrix
+                ctx.fillStyle = '#0F0';
+                ctx.font = fontSize + 'px monospace';
 
-                // Disegna i caratteri
                 for (let i = 0; i < drops.length; i++) {
                     const text = matrixChars.charAt(Math.floor(Math.random() * matrixChars.length));
                     ctx.fillText(text, i * fontSize, drops[i] * fontSize);
 
-                    // Ripristina i drop a zero una volta usciti dallo schermo
                     if (drops[i] * fontSize > canvas.height && Math.random() > 0.95) {
                         drops[i] = 0;
                     }
@@ -200,7 +189,32 @@
                 }
             }
 
-            setInterval(drawMatrix, 50); // Aggiorna ogni 50ms
+            setInterval(drawMatrix, 50);
+        }
+
+        function typeWriterMulti(element, messages, speed = 50, delayBetween = 1000) {
+            let index = 0;
+            function writeNext() {
+                if (index >= messages.length) return;
+
+                let text = messages[index];
+                let span = document.createElement("p");
+                element.appendChild(span);
+
+                let i = 0;
+                function type() {
+                    if (i < text.length) {
+                        span.innerHTML += text.charAt(i);
+                        i++;
+                        setTimeout(type, speed);
+                    } else {
+                        index++;
+                        setTimeout(writeNext, delayBetween);
+                    }
+                }
+                type();
+            }
+            writeNext();
         }
     </script>
 </body>
