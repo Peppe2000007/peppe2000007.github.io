@@ -80,7 +80,7 @@
         }
 
         .details {
-            font-size: 0.95rem;
+            font-size: 0.75rem;
             color: lime;
             margin-top: 20px;
             font-weight: bold;
@@ -145,7 +145,7 @@
         <p>Unità sotto controllo: BatCorporation AI</p>
         <div class="details" id="detailsBox"></div>
         <div class="radar">
-            <p>Localizzazione attiva: Crotone, Calabria - IT</p>
+            <p>Localizzazione attiva: Italia, Calabria - IT</p>
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Radar_animated.gif/240px-Radar_animated.gif" alt="Radar Calabria">
         </div>
     </div>
@@ -161,73 +161,59 @@
                 const hackedMessage = document.getElementById('hackedMessage');
                 canvas.style.display = 'block';
                 hackedMessage.style.display = 'flex';
-
                 startMatrixEffect();
-
                 const detailsBox = document.getElementById("detailsBox");
                 typeWriterHacker(detailsBox, [
-                    ">> IP locale rilevato: 192.168.1.102",
-                    ">> Sistema: Windows 11 - 64bit",
-                    ">> Antivirus disattivato automaticamente...",
-                    ">> Memoria RAM analizzata: 16.0 GB",
-                    ">> File sensibili trovati: 327",
-                    ">> Password salvate decifrate: 12",
-                    ">> Webcam remota ACCESA",
-                    ">> GPS attivo: Coordinate localizzate - Crotone (Calabria)",
-                    ">> Upload dati su darkweb: IN CORSO...",
-                    ">> Comunicazione criptata con server remoto: 198.51.100.13",
-                    ">> Sistema sotto controllo completo."
-                ], 10, 500);
-
+                    ">> INI | Connessione forzata alla rete target...",
+                    ">> SYS | Sistema operativo identificato: Windows 11 x64",
+                    ">> SEC | Antivirus disarmato tramite exploit 0xF31",
+                    ">> MEM | Dump completo della RAM in corso...",
+                    ">> FSYS | File riservati intercettati: 327",
+                    ">> PASS | Credenziali decrittate: 12",
+                    ">> CAM | Accesso visivo remoto attivo",
+                    ">> GPS | Localizzazione attiva: Italia, Calabria",
+                    ">> NET | Trasmissione crittografata verso nodo sconosciuto",
+                    ">> LINK | Tunnel SSH stabilito: 198.51.100.13",
+                    ">> ROOT | Sistema compromesso. Accesso root mantenuto."
+                ], 5, 300);
             }, 1000);
         }, 3000);
 
         function startMatrixEffect() {
             const canvas = document.getElementById('matrix');
             const ctx = canvas.getContext('2d');
-
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-
             const matrixChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@#$%^&*()_+[]{}<>?|';
             const fontSize = 16;
             const columns = canvas.width / fontSize;
             const drops = Array(Math.floor(columns)).fill(1);
-
             function drawMatrix() {
                 ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
-
                 ctx.fillStyle = '#0F0';
                 ctx.font = fontSize + 'px monospace';
-
                 for (let i = 0; i < drops.length; i++) {
                     const text = matrixChars.charAt(Math.floor(Math.random() * matrixChars.length));
                     ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
                     if (drops[i] * fontSize > canvas.height && Math.random() > 0.95) {
                         drops[i] = 0;
                     }
                     drops[i]++;
                 }
             }
-
             setInterval(drawMatrix, 50);
         }
 
-        function typeWriterHacker(element, messages, speed = 10, delayBetween = 500) {
+        function typeWriterHacker(element, messages, speed = 5, delayBetween = 300) {
             let index = 0;
-
             function writeNext() {
                 if (index >= messages.length) return;
-
                 let text = messages[index];
                 let span = document.createElement("p");
                 element.appendChild(span);
-
                 let i = 0;
                 let scrambledText = Array(text.length).fill().map(() => getRandomChar()).join("");
-
                 function type() {
                     if (i < text.length) {
                         scrambledText = scrambledText.substr(0, i) + text.charAt(i) + scrambledText.substr(i + 1);
@@ -239,12 +225,9 @@
                         setTimeout(writeNext, delayBetween);
                     }
                 }
-
                 type();
             }
-
             writeNext();
-
             function getRandomChar() {
                 const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@#$%^&*()_+[]{}<>?|';
                 return chars.charAt(Math.floor(Math.random() * chars.length));
