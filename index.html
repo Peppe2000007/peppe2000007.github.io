@@ -7,7 +7,8 @@
     <style>
         body {
             margin: 0;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Courier New', monospace;
+            background: black;
             overflow: hidden;
         }
 
@@ -68,18 +69,18 @@
         }
 
         .hacked-message h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
             text-shadow: 0 0 10px lime, 0 0 20px lime;
         }
 
         .hacked-message p {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             margin-top: 10px;
         }
 
         .details {
-            font-size: 1.2rem;
+            font-size: 0.95rem;
             color: lime;
             margin-top: 20px;
             font-weight: bold;
@@ -89,6 +90,17 @@
             border-radius: 10px;
             max-width: 600px;
             animation: fadeIn 3s ease-in;
+        }
+
+        .radar {
+            margin-top: 20px;
+        }
+
+        .radar img {
+            width: 300px;
+            border: 2px solid lime;
+            border-radius: 50%;
+            animation: rotate 5s linear infinite;
         }
 
         @keyframes bounce {
@@ -104,6 +116,11 @@
         @keyframes blink {
             0%, 50% { opacity: 1; }
             50%, 100% { opacity: 0; }
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .warning {
@@ -123,10 +140,14 @@
     <canvas id="matrix"></canvas>
 
     <div class="hacked-message" id="hackedMessage">
-        <h1 class="warning">⚠️ ATTENZIONE ⚠️</h1>
-        <p>Il tuo dispositivo è stato compromesso dalla <br><strong>BatCorporation</strong></p>
-        <p>Stiamo raccogliendo i tuoi dati personali... 🕵️‍♂️</p>
+        <h1 class="warning">⚠️ INTRUSIONE RILEVATA ⚠️</h1>
+        <p>Accesso remoto stabilito con successo...</p>
+        <p>Unità sotto controllo: BatCorporation AI</p>
         <div class="details" id="detailsBox"></div>
+        <div class="radar">
+            <p>Localizzazione attiva: Crotone, Calabria - IT</p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Radar_animated.gif/240px-Radar_animated.gif" alt="Radar Calabria">
+        </div>
     </div>
 
     <script>
@@ -136,7 +157,6 @@
             shoesStore.style.transform = 'scale(0.9)';
             setTimeout(() => {
                 shoesStore.style.display = 'none';
-
                 const canvas = document.getElementById('matrix');
                 const hackedMessage = document.getElementById('hackedMessage');
                 canvas.style.display = 'block';
@@ -146,15 +166,18 @@
 
                 const detailsBox = document.getElementById("detailsBox");
                 typeWriterHacker(detailsBox, [
-                    ">> Memoria copiata: 64.00 GB",
-                    ">> File sensibili individuati: 231",
-                    ">> Estrazione password in corso...",
-                    ">> Caricamento dati biometrici... COMPLETO",
-                    ">> Accesso webcam remota attivato",
-                    ">> Invio dati al server remoto: 198.51.100.13",
-                    ">> Sistema compromesso. Controllo completo acquisito.",
-                    ">> [!!!] Comunicazione stabilita con nodo BatCorporation"
-                ], 20, 800);
+                    ">> IP locale rilevato: 192.168.1.102",
+                    ">> Sistema: Windows 11 - 64bit",
+                    ">> Antivirus disattivato automaticamente...",
+                    ">> Memoria RAM analizzata: 16.0 GB",
+                    ">> File sensibili trovati: 327",
+                    ">> Password salvate decifrate: 12",
+                    ">> Webcam remota ACCESA",
+                    ">> GPS attivo: Coordinate localizzate - Crotone (Calabria)",
+                    ">> Upload dati su darkweb: IN CORSO...",
+                    ">> Comunicazione criptata con server remoto: 198.51.100.13",
+                    ">> Sistema sotto controllo completo."
+                ], 10, 500);
 
             }, 1000);
         }, 3000);
@@ -192,7 +215,7 @@
             setInterval(drawMatrix, 50);
         }
 
-        function typeWriterHacker(element, messages, speed = 20, delayBetween = 800) {
+        function typeWriterHacker(element, messages, speed = 10, delayBetween = 500) {
             let index = 0;
 
             function writeNext() {
