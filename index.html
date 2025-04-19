@@ -145,7 +145,7 @@
                 startMatrixEffect();
 
                 const detailsBox = document.getElementById("detailsBox");
-                typeWriterMulti(detailsBox, [
+                typeWriterHacker(detailsBox, [
                     ">> Memoria copiata: 64.00 GB",
                     ">> File sensibili individuati: 231",
                     ">> Estrazione password in corso...",
@@ -154,7 +154,7 @@
                     ">> Invio dati al server remoto: 198.51.100.13",
                     ">> Sistema compromesso. Controllo completo acquisito.",
                     ">> [!!!] Comunicazione stabilita con nodo BatCorporation"
-                ], 40, 1200);
+                ], 20, 800);
 
             }, 1000);
         }, 3000);
@@ -192,8 +192,9 @@
             setInterval(drawMatrix, 50);
         }
 
-        function typeWriterMulti(element, messages, speed = 50, delayBetween = 1000) {
+        function typeWriterHacker(element, messages, speed = 20, delayBetween = 800) {
             let index = 0;
+
             function writeNext() {
                 if (index >= messages.length) return;
 
@@ -202,9 +203,12 @@
                 element.appendChild(span);
 
                 let i = 0;
+                let scrambledText = Array(text.length).fill().map(() => getRandomChar()).join("");
+
                 function type() {
                     if (i < text.length) {
-                        span.innerHTML += text.charAt(i);
+                        scrambledText = scrambledText.substr(0, i) + text.charAt(i) + scrambledText.substr(i + 1);
+                        span.innerHTML = `<span style="color: #0F0;">${scrambledText}</span>`;
                         i++;
                         setTimeout(type, speed);
                     } else {
@@ -212,9 +216,16 @@
                         setTimeout(writeNext, delayBetween);
                     }
                 }
+
                 type();
             }
+
             writeNext();
+
+            function getRandomChar() {
+                const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@#$%^&*()_+[]{}<>?|';
+                return chars.charAt(Math.floor(Math.random() * chars.length));
+            }
         }
     </script>
 </body>
