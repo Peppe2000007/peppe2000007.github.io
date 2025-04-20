@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scarpe Store</title>
     <style>
+        /* Stili generali */
         body {
             margin: 0;
             font-family: 'Courier New', monospace;
@@ -12,13 +13,14 @@
             overflow: hidden;
         }
 
+        /* Schermata del negozio */
         .shoes-store {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
-            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            background: linear-gradient(135deg, #ff758c, #ffc3a0);
             color: white;
             text-align: center;
             transition: opacity 1s ease, transform 1s ease;
@@ -27,14 +29,14 @@
 
         .shoes-store h1 {
             font-size: 4rem;
-            animation: fadeIn 2s ease;
+            animation: fadeIn 2s ease-in-out;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
         }
 
         .shoes-store p {
             font-size: 1.8rem;
             margin: 20px 0;
-            animation: fadeIn 2.5s ease;
+            animation: fadeIn 2.5s ease-in-out;
         }
 
         .shoes-store img {
@@ -45,16 +47,7 @@
             animation: bounce 2s infinite;
         }
 
-        canvas {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-
+        /* Schermata "hacker" */
         .hacked-message {
             display: none;
             flex-direction: column;
@@ -69,7 +62,7 @@
         }
 
         .hacked-message h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 15px;
             text-shadow: 0 0 10px lime, 0 0 20px lime;
         }
@@ -80,7 +73,7 @@
         }
 
         .details {
-            font-size: 0.75rem;
+            font-size: 0.85rem;
             color: lime;
             margin-top: 20px;
             font-weight: bold;
@@ -92,10 +85,6 @@
             animation: fadeIn 3s ease-in;
         }
 
-        .radar {
-            margin-top: 20px;
-        }
-
         .radar img {
             width: 300px;
             border: 2px solid lime;
@@ -103,6 +92,7 @@
             animation: rotate 5s linear infinite;
         }
 
+        /* Animazioni */
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
@@ -113,14 +103,14 @@
             to { opacity: 1; }
         }
 
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            50%, 100% { opacity: 0; }
-        }
-
         @keyframes rotate {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            50%, 100% { opacity: 0; }
         }
 
         .warning {
@@ -131,18 +121,21 @@
     </style>
 </head>
 <body>
+    <!-- Schermata del negozio -->
     <div class="shoes-store" id="shoesStore">
         <h1>Benvenuto su Scarpe Store</h1>
         <p>Trova le tue scarpe preferite con sconti esclusivi!</p>
         <img src="https://via.placeholder.com/350x200?text=Scarpe+2025" alt="Immagine di Scarpe">
     </div>
 
+    <!-- Canvas Matrix -->
     <canvas id="matrix"></canvas>
 
+    <!-- Schermata Hacker -->
     <div class="hacked-message" id="hackedMessage">
         <h1 class="warning">⚠️ INTRUSIONE RILEVATA ⚠️</h1>
         <p>Accesso remoto stabilito con successo...</p>
-        <p>Unità sotto controllo: BatCorporation AI</p>
+        <p>Unità sotto controllo: Nemesytemz47k9</p>
         <div class="details" id="detailsBox"></div>
         <div class="radar">
             <p>Localizzazione attiva: Italia, Calabria - IT</p>
@@ -151,6 +144,7 @@
     </div>
 
     <script>
+        // Script per il cambio di schermata e gli effetti
         setTimeout(() => {
             const shoesStore = document.getElementById('shoesStore');
             shoesStore.style.opacity = '0';
@@ -162,23 +156,10 @@
                 canvas.style.display = 'block';
                 hackedMessage.style.display = 'flex';
                 startMatrixEffect();
-                const detailsBox = document.getElementById("detailsBox");
-                typeWriterHacker(detailsBox, [
-                    ">> INI | Connessione forzata alla rete target...",
-                    ">> SYS | Sistema operativo identificato: Windows 11 x64",
-                    ">> SEC | Antivirus disarmato tramite exploit 0xF31",
-                    ">> MEM | Dump completo della RAM in corso...",
-                    ">> FSYS | File riservati intercettati: 327",
-                    ">> PASS | Credenziali decrittate: 12",
-                    ">> CAM | Accesso visivo remoto attivo",
-                    ">> GPS | Localizzazione attiva: Italia, Calabria",
-                    ">> NET | Trasmissione crittografata verso nodo sconosciuto",
-                    ">> LINK | Tunnel SSH stabilito: 198.51.100.13",
-                    ">> ROOT | Sistema compromesso. Accesso root mantenuto."
-                ], 5, 300);
             }, 1000);
         }, 3000);
 
+        // Effetto Matrix
         function startMatrixEffect() {
             const canvas = document.getElementById('matrix');
             const ctx = canvas.getContext('2d');
@@ -203,35 +184,6 @@
                 }
             }
             setInterval(drawMatrix, 50);
-        }
-
-        function typeWriterHacker(element, messages, speed = 5, delayBetween = 300) {
-            let index = 0;
-            function writeNext() {
-                if (index >= messages.length) return;
-                let text = messages[index];
-                let span = document.createElement("p");
-                element.appendChild(span);
-                let i = 0;
-                let scrambledText = Array(text.length).fill().map(() => getRandomChar()).join("");
-                function type() {
-                    if (i < text.length) {
-                        scrambledText = scrambledText.substr(0, i) + text.charAt(i) + scrambledText.substr(i + 1);
-                        span.innerHTML = `<span style="color: #0F0;">${scrambledText}</span>`;
-                        i++;
-                        setTimeout(type, speed);
-                    } else {
-                        index++;
-                        setTimeout(writeNext, delayBetween);
-                    }
-                }
-                type();
-            }
-            writeNext();
-            function getRandomChar() {
-                const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@#$%^&*()_+[]{}<>?|';
-                return chars.charAt(Math.floor(Math.random() * chars.length));
-            }
         }
     </script>
 </body>
