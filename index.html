@@ -17,32 +17,65 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
-      background: linear-gradient(135deg, #ff758c, #ffc3a0);
-      color: white;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #f9f9f9, #e0e0e0);
+      color: #222;
       text-align: center;
       transition: opacity 1s ease, transform 1s ease;
       z-index: 10;
+      padding: 20px;
     }
 
     .shoes-store h1 {
-      font-size: 4rem;
-      animation: fadeIn 2s ease-in-out;
-      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+      font-size: 3rem;
+      margin-bottom: 10px;
     }
 
     .shoes-store p {
-      font-size: 1.8rem;
-      margin: 20px 0;
-      animation: fadeIn 2.5s ease-in-out;
+      font-size: 1.3rem;
+      margin-bottom: 30px;
     }
 
-    .shoes-store img {
-      max-width: 350px;
-      border: 5px solid white;
-      border-radius: 15px;
-      box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.4);
-      animation: bounce 2s infinite;
+    .shoe-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .shoe-card {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 15px;
+      width: 200px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+    }
+
+    .shoe-card img {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    .shoe-card h3 {
+      font-size: 1.1rem;
+      margin: 10px 0 5px;
+    }
+
+    .shoe-card .price {
+      color: #444;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    .buy-button {
+      margin-top: 30px;
+      background-color: #000;
+      border: none;
+      color: white;
+      font-size: 1.1rem;
+      padding: 10px 22px;
+      border-radius: 5px;
+      cursor: pointer;
     }
 
     .hacked-message {
@@ -64,11 +97,6 @@
       text-shadow: 0 0 10px lime, 0 0 20px lime;
     }
 
-    .hacked-message p {
-      font-size: 1.2rem;
-      margin-top: 10px;
-    }
-
     .details {
       font-size: 0.85rem;
       color: lime;
@@ -79,7 +107,6 @@
       border: 1px solid lime;
       border-radius: 10px;
       max-width: 600px;
-      animation: fadeIn 3s ease-in;
     }
 
     .radar img {
@@ -87,13 +114,6 @@
       border: 2px solid lime;
       border-radius: 50%;
       animation: rotate 5s linear infinite;
-    }
-
-    #matrix {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 0;
     }
 
     #toggleSound {
@@ -105,11 +125,6 @@
       padding: 10px 20px;
       border-radius: 10px;
       cursor: pointer;
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
     }
 
     @keyframes fadeIn {
@@ -132,14 +147,43 @@
       animation: blink 1s infinite;
       font-weight: bold;
     }
+
+    #matrix {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
   </style>
 </head>
 <body>
 
   <div class="shoes-store" id="shoesStore">
     <h1>Benvenuto su Scarpe Store</h1>
-    <p>Trova le tue scarpe preferite con sconti esclusivi!</p>
-    <img src="https://via.placeholder.com/350x200?text=Scarpe+2025" alt="Immagine di Scarpe">
+    <p>Scopri la nuova collezione 2025 con sconti esclusivi!</p>
+    <div class="shoe-gallery">
+      <div class="shoe-card">
+        <img src="https://www.mecshopping.it/images/products/97754/97754.jpg" alt="Skechers Graceful">
+        <h3>Skechers Graceful</h3>
+        <p class="price">€39,99</p>
+      </div>
+      <div class="shoe-card">
+        <img src="https://www.malu-shoes.com/3300/-scarpe-donna-eleganti-decollete-glitter-nero-tinta-unita-elegante-tacco-a-spillo-moda.jpg" alt="Decolleté Glitter Nero">
+        <h3>Decolleté Glitter Nero</h3>
+        <p class="price">€59,90</p>
+      </div>
+      <div class="shoe-card">
+        <img src="https://images-na.ssl-images-amazon.com/images/I/81Z0v2kU0gL._AC_UX575_.jpg" alt="ASICS Gel-Pulse 8">
+        <h3>ASICS Gel-Pulse 8</h3>
+        <p class="price">€89,99</p>
+      </div>
+      <div class="shoe-card">
+        <img src="https://www.latinisport.it/wp-content/uploads/2021/03/Skechers-Equalizer-3.0-Scarpe-Sportive-Indoor-Uomo-52927.jpg" alt="Skechers Equalizer 3.0">
+        <h3>Skechers Equalizer 3.0</h3>
+        <p class="price">€49,99</p>
+      </div>
+    </div>
+    <button class="buy-button">ACQUISTA ORA</button>
   </div>
 
   <canvas id="matrix"></canvas>
@@ -148,9 +192,7 @@
     <h1 class="warning">⚠️ INTRUSIONE RILEVATA ⚠️</h1>
     <p>Accesso remoto stabilito con successo...</p>
     <p>Unità sotto controllo: Nemesytemz47k9</p>
-    <div class="details" id="detailsBox">
-      Localizzazione attiva: Italia, Calabria - IT
-    </div>
+    <div class="details">Localizzazione attiva: Italia, Calabria - IT</div>
     <div class="radar">
       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Radar_animated.gif/240px-Radar_animated.gif" alt="Radar Calabria">
     </div>
@@ -202,7 +244,7 @@
           voice.play();
         }
       }, 1000);
-    }, 3000);
+    }, 4000);
 
     function startMatrixEffect() {
       const canvas = document.getElementById('matrix');
