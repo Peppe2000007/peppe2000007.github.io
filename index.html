@@ -1,190 +1,241 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scarpe Store</title>
-    <style>
-        /* Stili generali */
-        body {
-            margin: 0;
-            font-family: 'Courier New', monospace;
-            background: black;
-            overflow: hidden;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scarpe Store</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Courier New', monospace;
+      background: black;
+      overflow: hidden;
+    }
 
-        /* Schermata del negozio */
-        .shoes-store {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background: linear-gradient(135deg, #ff758c, #ffc3a0);
-            color: white;
-            text-align: center;
-            transition: opacity 1s ease, transform 1s ease;
-            z-index: 10;
-        }
+    .shoes-store {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #ff758c, #ffc3a0);
+      color: white;
+      text-align: center;
+      transition: opacity 1s ease, transform 1s ease;
+      z-index: 10;
+    }
 
-        .shoes-store h1 {
-            font-size: 4rem;
-            animation: fadeIn 2s ease-in-out;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-        }
+    .shoes-store h1 {
+      font-size: 4rem;
+      animation: fadeIn 2s ease-in-out;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    }
 
-        .shoes-store p {
-            font-size: 1.8rem;
-            margin: 20px 0;
-            animation: fadeIn 2.5s ease-in-out;
-        }
+    .shoes-store p {
+      font-size: 1.8rem;
+      margin: 20px 0;
+      animation: fadeIn 2.5s ease-in-out;
+    }
 
-        .shoes-store img {
-            max-width: 350px;
-            border: 5px solid white;
-            border-radius: 15px;
-            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.4);
-            animation: bounce 2s infinite;
-        }
+    .shoes-store img {
+      max-width: 350px;
+      border: 5px solid white;
+      border-radius: 15px;
+      box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.4);
+      animation: bounce 2s infinite;
+    }
 
-        /* Schermata "hacker" */
-        .hacked-message {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            height: 100vh;
-            color: lime;
-            font-family: 'Courier New', monospace;
-            z-index: 10;
-            animation: fadeIn 2s ease-in-out;
-        }
+    .hacked-message {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: 100vh;
+      color: lime;
+      font-family: 'Courier New', monospace;
+      z-index: 10;
+      animation: fadeIn 2s ease-in-out;
+    }
 
-        .hacked-message h1 {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            text-shadow: 0 0 10px lime, 0 0 20px lime;
-        }
+    .hacked-message h1 {
+      font-size: 3rem;
+      margin-bottom: 15px;
+      text-shadow: 0 0 10px lime, 0 0 20px lime;
+    }
 
-        .hacked-message p {
-            font-size: 1.2rem;
-            margin-top: 10px;
-        }
+    .hacked-message p {
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
 
-        .details {
-            font-size: 0.85rem;
-            color: lime;
-            margin-top: 20px;
-            font-weight: bold;
-            background-color: rgba(0, 0, 0, 0.4);
-            padding: 15px;
-            border: 1px solid lime;
-            border-radius: 10px;
-            max-width: 600px;
-            animation: fadeIn 3s ease-in;
-        }
+    .details {
+      font-size: 0.85rem;
+      color: lime;
+      margin-top: 20px;
+      font-weight: bold;
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 15px;
+      border: 1px solid lime;
+      border-radius: 10px;
+      max-width: 600px;
+      animation: fadeIn 3s ease-in;
+    }
 
-        .radar img {
-            width: 300px;
-            border: 2px solid lime;
-            border-radius: 50%;
-            animation: rotate 5s linear infinite;
-        }
+    .radar img {
+      width: 300px;
+      border: 2px solid lime;
+      border-radius: 50%;
+      animation: rotate 5s linear infinite;
+    }
 
-        /* Animazioni */
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
+    #matrix {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+    #toggleSound {
+      margin-top: 25px;
+      background-color: black;
+      border: 2px solid lime;
+      color: lime;
+      font-size: 1rem;
+      padding: 10px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
 
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
 
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            50%, 100% { opacity: 0; }
-        }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
 
-        .warning {
-            color: red;
-            animation: blink 1s infinite;
-            font-weight: bold;
-        }
-    </style>
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+
+    .warning {
+      color: red;
+      animation: blink 1s infinite;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-    <!-- Schermata del negozio -->
-    <div class="shoes-store" id="shoesStore">
-        <h1>Benvenuto su Scarpe Store</h1>
-        <p>Trova le tue scarpe preferite con sconti esclusivi!</p>
-        <img src="https://via.placeholder.com/350x200?text=Scarpe+2025" alt="Immagine di Scarpe">
+
+  <div class="shoes-store" id="shoesStore">
+    <h1>Benvenuto su Scarpe Store</h1>
+    <p>Trova le tue scarpe preferite con sconti esclusivi!</p>
+    <img src="https://via.placeholder.com/350x200?text=Scarpe+2025" alt="Immagine di Scarpe">
+  </div>
+
+  <canvas id="matrix"></canvas>
+
+  <div class="hacked-message" id="hackedMessage">
+    <h1 class="warning">⚠️ INTRUSIONE RILEVATA ⚠️</h1>
+    <p>Accesso remoto stabilito con successo...</p>
+    <p>Unità sotto controllo: Nemesytemz47k9</p>
+    <div class="details" id="detailsBox">
+      Localizzazione attiva: Italia, Calabria - IT
     </div>
-
-    <!-- Canvas Matrix -->
-    <canvas id="matrix"></canvas>
-
-    <!-- Schermata Hacker -->
-    <div class="hacked-message" id="hackedMessage">
-        <h1 class="warning">⚠️ INTRUSIONE RILEVATA ⚠️</h1>
-        <p>Accesso remoto stabilito con successo...</p>
-        <p>Unità sotto controllo: Nemesytemz47k9</p>
-        <div class="details" id="detailsBox"></div>
-        <div class="radar">
-            <p>Localizzazione attiva: Italia, Calabria - IT</p>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Radar_animated.gif/240px-Radar_animated.gif" alt="Radar Calabria">
-        </div>
+    <div class="radar">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Radar_animated.gif/240px-Radar_animated.gif" alt="Radar Calabria">
     </div>
+    <button id="toggleSound">Disattiva Suono</button>
+  </div>
 
-    <script>
-        // Script per il cambio di schermata e gli effetti
-        setTimeout(() => {
-            const shoesStore = document.getElementById('shoesStore');
-            shoesStore.style.opacity = '0';
-            shoesStore.style.transform = 'scale(0.9)';
-            setTimeout(() => {
-                shoesStore.style.display = 'none';
-                const canvas = document.getElementById('matrix');
-                const hackedMessage = document.getElementById('hackedMessage');
-                canvas.style.display = 'block';
-                hackedMessage.style.display = 'flex';
-                startMatrixEffect();
-            }, 1000);
-        }, 3000);
+  <audio id="alarm" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2021/09/01/audio_8b177f0c59.mp3" type="audio/mpeg">
+  </audio>
 
-        // Effetto Matrix
-        function startMatrixEffect() {
-            const canvas = document.getElementById('matrix');
-            const ctx = canvas.getContext('2d');
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            const matrixChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@#$%^&*()_+[]{}<>?|';
-            const fontSize = 16;
-            const columns = canvas.width / fontSize;
-            const drops = Array(Math.floor(columns)).fill(1);
-            function drawMatrix() {
-                ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                ctx.fillStyle = '#0F0';
-                ctx.font = fontSize + 'px monospace';
-                for (let i = 0; i < drops.length; i++) {
-                    const text = matrixChars.charAt(Math.floor(Math.random() * matrixChars.length));
-                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                    if (drops[i] * fontSize > canvas.height && Math.random() > 0.95) {
-                        drops[i] = 0;
-                    }
-                    drops[i]++;
-                }
-            }
-            setInterval(drawMatrix, 50);
+  <audio id="voice">
+    <source src="https://github.com/peppe2000007/audio/blob/main/voce-accesso.mp3?raw=true" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const alarm = document.getElementById('alarm');
+    const voice = document.getElementById('voice');
+    const toggleSound = document.getElementById('toggleSound');
+    let soundEnabled = true;
+
+    toggleSound.addEventListener('click', () => {
+      soundEnabled = !soundEnabled;
+      if (soundEnabled) {
+        alarm.play();
+        voice.play();
+        toggleSound.innerText = "Disattiva Suono";
+      } else {
+        alarm.pause();
+        alarm.currentTime = 0;
+        voice.pause();
+        voice.currentTime = 0;
+        toggleSound.innerText = "Attiva Suono";
+      }
+    });
+
+    setTimeout(() => {
+      const shoesStore = document.getElementById('shoesStore');
+      shoesStore.style.opacity = '0';
+      shoesStore.style.transform = 'scale(0.9)';
+      setTimeout(() => {
+        shoesStore.style.display = 'none';
+        const canvas = document.getElementById('matrix');
+        const hackedMessage = document.getElementById('hackedMessage');
+        canvas.style.display = 'block';
+        hackedMessage.style.display = 'flex';
+        startMatrixEffect();
+        if (soundEnabled) {
+          alarm.play();
+          voice.play();
         }
-    </script>
+      }, 1000);
+    }, 3000);
+
+    function startMatrixEffect() {
+      const canvas = document.getElementById('matrix');
+      const ctx = canvas.getContext('2d');
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas);
+
+      const matrixChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@#$%^&*()_+[]{}<>?|';
+      const fontSize = 16;
+      const columns = canvas.width / fontSize;
+      const drops = Array(Math.floor(columns)).fill(1);
+
+      function drawMatrix() {
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#0F0';
+        ctx.font = fontSize + 'px monospace';
+        for (let i = 0; i < drops.length; i++) {
+          const text = matrixChars.charAt(Math.floor(Math.random() * matrixChars.length));
+          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+          if (drops[i] * fontSize > canvas.height && Math.random() > 0.95) {
+            drops[i] = 0;
+          }
+          drops[i]++;
+        }
+      }
+
+      setInterval(drawMatrix, 50);
+    }
+  </script>
 </body>
 </html>
